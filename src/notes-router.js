@@ -52,7 +52,7 @@ notesRouter
     .all((req, res, next) => {
         NotesService.getById(req.app.get('db'), req.params.id)
             .then(note => {
-                if (!article) {
+                if (!note) {
                     return res.status(404).json({
                         error: { message: 'Note does not exist'}
                     })
@@ -71,12 +71,12 @@ notesRouter
             })
             .catch(next)
     })
-    .patch(jsonParse, (req, res, next) => {
+    .patch(jsonParser, (req, res, next) => {
         const { name, folder_id, content } = req.body
         const noteUpdate = {name, folder_id, content}
 
         const numValues = Object.values(articleToUpdate).filter(Boolean).length
-        if (numvalues === 0) {
+        if (numValues === 0) {
             return res.status(400).json({
                 error: { message: 'Request must contain either name, folder_id, or content'}
             })

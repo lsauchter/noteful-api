@@ -47,7 +47,7 @@ foldersRouter
     .all((req, res, next) => {
         FoldersService.getById(req.app.get('db'), req.params.id)
             .then(folder => {
-                if (!article) {
+                if (!folder) {
                     return res.status(404).json({
                         error: { message: 'Folder does not exist'}
                     })
@@ -66,7 +66,7 @@ foldersRouter
             })
             .catch(next)
     })
-    .patch(jsonParse, (req, res, next) => {
+    .patch(jsonParser, (req, res, next) => {
         const { name} = req.body
         const folderUpdate = {name}
 
