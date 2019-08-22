@@ -15,7 +15,9 @@ const morganOption = (NODE_ENV === 'production')
 
 app.use(morgan(morganOption))
 app.use(helmet())
-app.use(cors())
+app.use(cors({
+    origin: 'https://lsauchter-noteful.now.sh/'
+}))
 
 app.use('/api/folders', foldersRouter)
 app.use('/api/notes', notesRouter)
